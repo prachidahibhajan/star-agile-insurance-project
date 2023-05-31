@@ -1,0 +1,15 @@
+hosts:test-server
+become:true
+task:
+tasks:
+   - name: updating packages
+     command: sudo apt-get update
+
+   - name: To install docker
+     command: sudo apt-get install -y docker.io
+
+   - name: To start docker service
+     command: sudo systemctl start docker
+
+   - name: To deploy container to registry
+     command: docker run -itd -p 8081:8081 --name insure-me prachidahibhajan/insure-me:1.0
